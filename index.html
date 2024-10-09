@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Cédula</title>
+    
+    <!-- Google Fonts para tipografía elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Vincular el archivo CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Archivo JS para la validación -->
+    <script src="validarCedula.js" defer></script>
+</head>
+<body>
+    <h1>Validador de Cédula</h1>
+    <form id="cedulaForm">
+        <label for="cedulaInput">Introduce tu cédula (formato: 001-2110745-7):</label>
+        <input type="text" id="cedulaInput" required>
+        <button type="submit">Validar</button>
+    </form>
+    <p id="resultado"></p> <!-- Muestra el resultado -->
+
+    <!-- JavaScript para la funcionalidad de validación -->
+    <script>
+        // Obtener el formulario y el campo de resultado
+        const form = document.getElementById('cedulaForm');
+        const resultado = document.getElementById('resultado');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+            const cedula = document.getElementById('cedulaInput').value;
+            const esValida = validarCedula(cedula); // Validar la cédula
+
+            // Mostrar el resultado en la página
+            if (esValida) {
+                resultado.textContent = "La cédula es válida.";
+                resultado.className = 'success'; // Estilo de éxito
+            } else {
+                resultado.textContent = "La cédula es inválida.";
+                resultado.className = 'error'; // Estilo de error
+            }
+        });
+    </script>
+</body>
+</html>
